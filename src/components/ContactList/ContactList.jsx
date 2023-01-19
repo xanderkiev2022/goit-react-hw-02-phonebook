@@ -1,7 +1,8 @@
 // import PropTypes from 'prop-types';
-import Contact from 'components/Contact/Contact';
 
-export function ContactList({ contacts }) {
+import {Contact} from 'components/Contact/Contact';
+
+export function ContactList({ contacts, deleteContact }) {
     console.log (contacts)
   return (
     <ul>
@@ -9,7 +10,7 @@ export function ContactList({ contacts }) {
         console.log (name)
         return (
           <li key={id}>
-            <Contact name={name} number={number} id={id} />
+            <Contact name={name} number={number} id={id} deleteContact={deleteContact}/>
           </li>
         );
       })}

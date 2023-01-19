@@ -1,13 +1,13 @@
 // import PropTypes from 'prop-types';
 
-export default function Contact({ id, name, number }) {
+export function Contact({id, name, number, deleteContact}) {
   return (
       <div>
         <div>
           <span>{name}: </span>
           <span>{number}</span>
         </div>
-        {/* <Button type="button" onClick={() => deleteContact(contactId)}>Delete</Button> */}
+        <button type="button" onClick={() => deleteContact(id)}>Delete</button>
       </div>
   );
 }

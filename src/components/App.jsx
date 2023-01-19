@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
+import { Filter } from './Filter/Filter';
 
 export class App extends Component {
   state = {
@@ -14,31 +15,51 @@ export class App extends Component {
     filter: '',
   };
 
-  handleSubmit = contactFormState => {
-    contactFormState.id = nanoid();
+  handleSubmit = stateOfContactForm => {
+    const { contacts } = this.state;
+    const dublicate = contacts.find(contact =>contact.name.toLowerCase() === stateOfContactForm.name.toLowerCase());
+    if (dublicate) return alert(`${stateOfContactForm.name} is already in contacts`);
+
+    stateOfContactForm.id = nanoid();
     this.setState(prevState => ({
-      contacts: [contactFormState, ...prevState.contacts],
+      contacts: [stateOfContactForm, ...prevState.contacts],
     }));
   };
 
-  makingListOfContacts = () => {
-    const { contacts } = this.state;
-    console.log(contacts);
-    return contacts;
+  changeFilter = e => {
+    this.setState({ filter: e.currentTarget.value });
+  };
+
+  deleteContact = id => {
+    this.setState(prevState => {
+      return {
+        contacts: prevState.contacts.filter(contact => contact.id !== id),
+      };
+    });   
+  };
+
+  makeListOfContacts = () => {
+    const { filter, contacts } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
   };
 
   render() {
+    const { filter, contacts } = this.state;
     return (
       <div>
         <h1>Phonebook</h1>
         <ContactForm onSubmitData={this.handleSubmit} />
 
         <h2>Contacts</h2>
-        {/* <Filter ... /> */}
-        {/* <ContactList ... /> */}
-
-        {/* <Filter value={filter} changeFilter={this.changeFilter} /> */}
-        <ContactList contacts={this.makingListOfContacts()} />
+        <Filter value={filter} changeFilter={this.changeFilter} />
+        {contacts.length ? (
+          <ContactList contacts={this.makeListOfContacts()} deleteContact={this.deleteContact}/>
+        ) : (
+          <p>Sorry, you have no contacts</p>
+        )}
       </div>
     );
   }
