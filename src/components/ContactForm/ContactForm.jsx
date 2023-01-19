@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import {Container, InputContainer, Input, LabelText, Button} from './ContactForm.styled'
 
 export class ContactForm extends Component {
   state = {
@@ -28,14 +29,16 @@ export class ContactForm extends Component {
     const { name, number} = this.state;
 
     return (
-      <div>
+      <Container>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Name
-            <input
+<InputContainer>
+<label>
+<LabelText>Name</LabelText>
+
+            <Input
               value={name}
               onChange={this.handelChange}
-              placeholder="Enter your name, please"
+              placeholder="Chris Pratt"
               type="text"
               name="name"
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -44,11 +47,12 @@ export class ContactForm extends Component {
             />
           </label>
           <label>
-            Number
-            <input
+            <LabelText>Number</LabelText>
+               
+            <Input
               value={number}
               onChange={this.handelChange}
-              placeholder="Enter your phone number, please"
+              placeholder="055-066-77-88"
               type="tel"
               name="number"
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -56,9 +60,14 @@ export class ContactForm extends Component {
               required
             />
           </label>
-         <button type="submit">Add contact</button>
+</InputContainer>
+         <Button type="submit">Add contact</Button>
         </form>
-      </div>
+      </Container>
     );
   }
 }
+
+ContactForm.propTypes = {
+  onSubmitData: PropTypes.func.isRequired,
+};
