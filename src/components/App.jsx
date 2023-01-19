@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Container, TitleH1, TitleH2} from './App.styled'
+import { Container, TitleH1, TitleH2 } from './App.styled';
 
 import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
@@ -19,8 +19,12 @@ export class App extends Component {
 
   handleSubmit = stateOfContactForm => {
     const { contacts } = this.state;
-    const dublicate = contacts.find(contact =>contact.name.toLowerCase() === stateOfContactForm.name.toLowerCase());
-    if (dublicate) return alert(`${stateOfContactForm.name} is already in contacts`);
+    const dublicate = contacts.find(
+      contact =>
+        contact.name.toLowerCase() === stateOfContactForm.name.toLowerCase()
+    );
+    if (dublicate)
+      return alert(`${stateOfContactForm.name} is already in contacts`);
 
     stateOfContactForm.id = nanoid();
     this.setState(prevState => ({
@@ -37,7 +41,7 @@ export class App extends Component {
       return {
         contacts: prevState.contacts.filter(contact => contact.id !== id),
       };
-    });   
+    });
   };
 
   makeListOfContacts = () => {
@@ -58,9 +62,15 @@ export class App extends Component {
         <TitleH2>Contacts</TitleH2>
         <Filter value={filter} changeFilter={this.changeFilter} />
         {contacts.length ? (
-          <ContactList contacts={this.makeListOfContacts()} deleteContact={this.deleteContact}/>
+          <ContactList
+            contacts={this.makeListOfContacts()}
+            deleteContact={this.deleteContact}
+          />
         ) : (
-          <p>Oh, dear, you have no friends:( Get out of your chair and do something with your life ;)</p>
+          <p>
+            Oh, dear, you have no friends:( Get out of your chair and do
+            something with your life ;)
+          </p>
         )}
       </Container>
     );

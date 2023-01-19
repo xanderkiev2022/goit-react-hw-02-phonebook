@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import {List, Item} from './ContactList.styled'
-import {Contact} from 'components/Contact/Contact';
+import { List, Item } from './ContactList.styled';
+import { Contact } from 'components/Contact/Contact';
 
 export function ContactList({ contacts, deleteContact }) {
   return (
@@ -8,7 +8,12 @@ export function ContactList({ contacts, deleteContact }) {
       {contacts.map(({ id, name, number }) => {
         return (
           <Item key={id}>
-            <Contact name={name} number={number} id={id} deleteContact={deleteContact}/>
+            <Contact
+              name={name}
+              number={number}
+              id={id}
+              deleteContact={deleteContact}
+            />
           </Item>
         );
       })}

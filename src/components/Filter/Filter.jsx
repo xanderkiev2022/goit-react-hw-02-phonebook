@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import {FilterContainer,LabelText, Label, Input} from './Filter.styled'
-
+import { FilterContainer, LabelText, Label, Input } from './Filter.styled';
 
 export function Filter({ value, changeFilter }) {
   return (

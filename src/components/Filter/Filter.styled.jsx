@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const FilterContainer = styled.div`
   max-width: 400px;
-
 `;
 
 export const Label = styled.label`
@@ -20,7 +19,6 @@ export const Input = styled.input`
 `;
 
 export const LabelText = styled.span`
-  margin: 0 0 10px;
   color: var(--secondary-text-color);
   font-size: 18px;
   font-weight: 600;

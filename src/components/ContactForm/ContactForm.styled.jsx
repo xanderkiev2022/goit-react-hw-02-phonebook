@@ -11,7 +11,7 @@ export const InputContainer = styled.div`
 `;
 
 export const LabelText = styled.h3`
-color: var(--secondary-text-color);
+  color: var(--secondary-text-color);
 `;
 
 export const Input = styled.input`
