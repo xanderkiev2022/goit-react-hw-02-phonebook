@@ -24,7 +24,7 @@ export class ContactForm extends Component {
   };
 
   render() {
-    const { name, number, filter } = this.state;
+    const { name, number} = this.state;
 
     return (
       <div>
